@@ -1,0 +1,37 @@
+<div class="container">
+    <!-- <mat-card></mat-card> -->
+    <!-- <div class="nav-bar">
+        <div>
+            <h3>Assets</h3>
+        </div>
+        <div class="nav-icons">
+            <mat-icon fontIcon="filter_list"></mat-icon>
+            <mat-icon fontIcon="device_hub"></mat-icon>
+            <mat-icon fontIcon="notifications"></mat-icon>
+            <mat-icon fontIcon="person"></mat-icon>
+        </div>
+    </div> -->
+    <div class="asset-button">
+        <button matButton="elevated"><mat-icon fontIcon="add"></mat-icon>
+            Assign Asset</button>
+
+    </div>
+    
+    <div class="content">
+        <div *ngFor="let asset of assetsData">
+            <mat-card appearance="outlined" class="content-card">
+                <mat-card-content>
+                    <p>AssetID: {{asset.assetId}} <span> <mat-icon fontIcon="star_outline"></mat-icon>
+                        </span></p>
+                    <p> <span class="title">{{asset.title}}</span> <button class="online-btn">online</button></p>
+                    <p>{{asset.assetImei}} <span>
+                            <p>{{asset.discId}}</p>
+                        </span></p>
+                    <p>Last Ping <span>{{asset.lastPing}}</span></p>
+                </mat-card-content>
+
+            </mat-card>
+        </div>
+    </div>
+
+</div>
