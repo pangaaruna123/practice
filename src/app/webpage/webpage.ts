@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { Network } from '../network';
 
 @Component({
   selector: 'app-webpage',
@@ -8,6 +9,7 @@ import { Component } from '@angular/core';
   styleUrl: './webpage.scss',
 })
 export class Webpage {
+  constructor(private ns:Network){}
 features = [
     {
       icon: '📊',
@@ -90,7 +92,15 @@ features = [
     if (this.startIndex > 0) {
       this.startIndex--;
     }
+this.ns.getdata('123')
+.subscribe({
+  next:(res)=>{
+    console.log(res,'98')
+  },
+  error:(err)=>{
+    console.log(err,'err')
   }
+})  }
 
   // toggleReadMore(index: number) {
   //   this.visibleCards[index].expanded =
