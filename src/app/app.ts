@@ -1,10 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { Homepage } from './homepage/homepage';
 import { CommonModule } from '@angular/common';
+import { Webpage } from './webpage/webpage';
 
 @Component({
   selector: 'app-root',
-  imports: [Homepage,CommonModule],
+  imports: [Webpage,CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
