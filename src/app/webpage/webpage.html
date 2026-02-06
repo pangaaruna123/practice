@@ -1,195 +1,194 @@
 <div class="webpage">
 
 
-<div class="features">
-  <h6 class="subtitle">OUR FEATURES</h6>
-  <h2>Comprehensive Smart Lighting Solutions</h2>
-  <p class="description">
-    Everything you need for efficient, reliable, and sustainable lighting operations
-  </p>
-
-  <div class="features-grid">
-    <div class="feature-card" *ngFor="let feature of features">
-      <div class="icon">{{ feature.icon }}</div>
-      <h4>{{ feature.title }}</h4>
-      <p>{{ feature.text }}</p>
-    </div>
-  </div>
-</div>
-
-<div class="dashboard">
-  <div class="dashboard-content">
-    <div class="left">
-      <img src="assets/dashboard.png" alt="Dashboard" />
-    </div>
-
-    <div class="right">
-      <h2>From Monitoring to Maintenance: Everything You Need</h2>
-      <p>
-        A comprehensive platform for efficient and reliable operations
-      </p>
-
-      <ul>
-        <li *ngFor="let item of dashboardFeatures">
-          <span class="check">✔</span> {{ item }}
-        </li>
-      </ul>
-
-      <button class="primary-btn">Explore the Platform</button>
-    </div>
-  </div>
-</div>
-
-<div class="solutions">
-  <h2>Our Comprehensive Solutions Are Designed To Deliver Maximum Value</h2>
-
-  <div class="solutions-wrapper">
-    <div class="tabs">
-      <button class="active">Network</button>
-      <button>Software</button>
-      <button>Hardware</button>
-      <button>Support</button>
-
-      <ul>
-        <li>Nationwide LTE Coverage</li>
-        <li>Redundant NOC Coverage</li>
-        <li>High-Speed Connectivity</li>
-        <li>Secure Network Infrastructure</li>
-        <li>Scalable Network Architecture</li>
-      </ul>
-    </div>
-
-    <div class="solution-image">
-      <img src="assets/network.jpg" alt="Network" />
-      <div class="overlay">Nationwide Support Available</div>
-    </div>
-  </div>
-</div>
-
-<div class="insights">
-  <div class="container">
-    <h2 class="title">Insight & Resources</h2>
-    <p class="subtitle">
-      Explore Our Blogs And Whitepapers To Understand How Innovations, Regulations,
-      And Customer Needs Are Driving The Smart Lighting Market Forward
+  <div class="features">
+    <h6 class="subtitle">OUR FEATURES</h6>
+    <h2>Comprehensive Smart Lighting Solutions</h2>
+    <p class="description">
+      Everything you need for efficient, reliable, and sustainable lighting operations
     </p>
 
-    <!-- Slider Wrapper -->
-    <div class="slider">
-      <!-- Left Arrow -->
-      <button class="arrow arrow--left" (click)="prev()">
-        ‹
-      </button>
+    <div class="features-grid">
+      <div class="feature-card" *ngFor="let feature of features">
+        <div class="icon">{{ feature.icon }}</div>
+        <h4>{{ feature.title }}</h4>
+        <p>{{ feature.text }}</p>
+      </div>
+    </div>
+  </div>
 
-      <!-- Cards -->
-      <div class="slider__track">
-        <article class="card">
-          <img src="assets/images/insight-1.jpg" />
-          <h3>Smart Lighting Innovations</h3>
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
-          <a>Read More →</a>
-        </article>
+  <div class="dashboard">
+    <div class="dashboard-content">
+      <div class="left">
+        <img src="assets/dashboard.png" alt="Dashboard" />
+      </div>
 
-        <article class="card">
-          <img src="assets/images/insight-2.jpg" />
-          <h3>Energy Efficiency Guide</h3>
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
-          <a>Read More →</a>
-        </article>
+      <div class="right">
+        <h2>From Monitoring to Maintenance: Everything You Need</h2>
+        <p>
+          A comprehensive platform for efficient and reliable operations
+        </p>
 
-        <article class="card">
-          <img src="assets/images/insight-3.jpg" />
-          <h3>Market Trends 2026</h3>
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
-          <a>Read More →</a>
-        </article>
+        <ul>
+          <li *ngFor="let item of dashboardFeatures">
+            <span class="check">✔</span> {{ item }}
+          </li>
+        </ul>
 
-        <article class="card">
-          <img src="assets/images/insight-4.jpg" />
-          <h3>Sustainable Cities</h3>
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
-          <a>Read More →</a>
-        </article>
+        <button class="primary-btn">Explore the Platform</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="solutions">
+    <h2>Our Comprehensive Solutions Are Designed To Deliver Maximum Value</h2>
+
+    <div class="solutions-wrapper">
+      <div class="tabs">
+        <button class="active">Network</button>
+        <button>Software</button>
+        <button>Hardware</button>
+        <button>Support</button>
+
+        <ul>
+          <li>Nationwide LTE Coverage</li>
+          <li>Redundant NOC Coverage</li>
+          <li>High-Speed Connectivity</li>
+          <li>Secure Network Infrastructure</li>
+          <li>Scalable Network Architecture</li>
+        </ul>
+      </div>
+
+      <div class="solution-image">
+        <img src="assets/network.jpg" alt="Network" />
+        <div class="overlay">Nationwide Support Available</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="insights">
+    <div class="container">
+      <h2 class="title">Insight & Resources</h2>
+      <p class="subtitle">
+        Explore Our Blogs And Whitepapers To Understand How Innovations, Regulations,
+        And Customer Needs Are Driving The Smart Lighting Market Forward
+      </p>
+
+      <!-- Slider Wrapper -->
+      <div class="slider">
+        <!-- Left Arrow -->
+        <button class="arrow arrow--left" (click)="prev()">
+          ‹
+        </button>
+
+        <!-- Cards -->
+        <div class="slider__track">
           <article class="card">
-          <img src="assets/images/insight-4.jpg" />
-          <h3>Sustainable Cities</h3>
-          <p>Lorem ipsum dolor sit amet consectetur.</p>
-          <a>Read More →</a>
-        </article>
-      </div>
+            <img src="assets/images/insight-1.jpg" />
+            <h3>Smart Lighting Innovations</h3>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <a>Read More →</a>
+          </article>
 
-      <!-- Right Arrow -->
-      <button class="arrow arrow--right" (click)="next()">
-        ›
-      </button>
-    </div>
+          <article class="card">
+            <img src="assets/images/insight-2.jpg" />
+            <h3>Energy Efficiency Guide</h3>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <a>Read More →</a>
+          </article>
 
-    <!-- Pagination Dots -->
-    <div class="dots">
-      <span class="dot active"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
+          <article class="card">
+            <img src="assets/images/insight-3.jpg" />
+            <h3>Market Trends 2026</h3>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <a>Read More →</a>
+          </article>
 
-    <!-- CTA -->
-    <button class="view-btn">View All Resources →</button>
-  </div>
-</div>
-
-<div class="testimonials">
-  <div class="container">
-    <h2 class="testimonials__title">Trusted by Industry Leaders</h2>
-
-    <div class="testimonials__grid">
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “JioLux has transformed our city lighting infrastructure and reduced
-          operational costs significantly.”
-        </p>
-
-        <div class="author">
-          <img src="assets/images/user-1.jpg" />
-          <div>
-            <strong>Sarah Johnson</strong>
-            <span>City Manager</span>
-          </div>
+          <article class="card">
+            <img src="assets/images/insight-4.jpg" />
+            <h3>Sustainable Cities</h3>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <a>Read More →</a>
+          </article>
+          <article class="card">
+            <img src="assets/images/insight-4.jpg" />
+            <h3>Sustainable Cities</h3>
+            <p>Lorem ipsum dolor sit amet consectetur.</p>
+            <a>Read More →</a>
+          </article>
         </div>
+
+        <!-- Right Arrow -->
+        <button class="arrow arrow--right" (click)="next()">
+          ›
+        </button>
       </div>
 
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “The energy optimization capabilities are outstanding and easy to deploy.”
-        </p>
-
-        <div class="author">
-          <img src="assets/images/user-2.jpg" />
-          <div>
-            <strong>Michael Chen</strong>
-            <span>Sustainability Director</span>
-          </div>
-        </div>
+      <!-- Pagination Dots -->
+      <div class="dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
       </div>
 
-      <div class="testimonial-card">
-        <div class="stars">★★★★★</div>
-        <p>
-          “An enterprise-ready solution with measurable results across facilities.”
-        </p>
-
-        <div class="author">
-          <img src="assets/images/user-3.jpg" />
-          <div>
-            <strong>David Martinez</strong>
-            <span>Operations Head</span>
-          </div>
-        </div>
-      </div>
+      <button class="view-btn" (click)="viewAllResources()">View All Resources →</button>
     </div>
   </div>
-</div>
+
+  <div class="testimonials">
+    <div class="container">
+      <h2 class="testimonials__title">Trusted by Industry Leaders</h2>
+
+      <div class="testimonials__grid">
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “JioLux has transformed our city lighting infrastructure and reduced
+            operational costs significantly.”
+          </p>
+
+          <div class="author">
+            <img src="assets/images/user-1.jpg" />
+            <div>
+              <strong>Sarah Johnson</strong>
+              <span>City Manager</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “The energy optimization capabilities are outstanding and easy to deploy.”
+          </p>
+
+          <div class="author">
+            <img src="assets/images/user-2.jpg" />
+            <div>
+              <strong>Michael Chen</strong>
+              <span>Sustainability Director</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testimonial-card">
+          <div class="stars">★★★★★</div>
+          <p>
+            “An enterprise-ready solution with measurable results across facilities.”
+          </p>
+
+          <div class="author">
+            <img src="assets/images/user-3.jpg" />
+            <div>
+              <strong>David Martinez</strong>
+              <span>Operations Head</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 
 </div>

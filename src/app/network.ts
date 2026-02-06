@@ -6,13 +6,13 @@ import { catchError, map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class Network {
-  constructor(private http:HttpClient){}
-  getdata(payload:any): Observable<any>{
-     return this.http.post('http://localhost:4200/api/data',payload).pipe(
-      map((res:any)=>{
+  constructor(private http: HttpClient) { }
+  getdata(payload: any): Observable<any> {
+    return this.http.post('http://localhost:4200/api/data', payload).pipe(
+      map((res: any) => {
         return res;
       }),
-      catchError((err)=>{
+      catchError((err) => {
         console.error('Error fetching data:', err);
         throw err;
       })

@@ -6,8 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
-  imports: [Webpage,CommonModule,HttpClientModule],
-  providers:[Network],
+  imports: [Webpage, CommonModule, HttpClientModule],
+  providers: [Network],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })

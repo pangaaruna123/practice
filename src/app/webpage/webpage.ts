@@ -9,8 +9,8 @@ import { Network } from '../network';
   styleUrl: './webpage.scss',
 })
 export class Webpage {
-  constructor(private ns:Network){}
-features = [
+  constructor(private ns: Network) { }
+  features = [
     {
       icon: '📊',
       title: 'Centralized Monitoring',
@@ -49,7 +49,7 @@ features = [
     'Quick Response',
     'Secure & Reliable'
   ];
-   resources = [
+  resources = [
     {
       title: 'Smart Lighting Innovations',
       description: 'Lorem ipsum dolor sit amet consectetur.',
@@ -92,15 +92,18 @@ features = [
     if (this.startIndex > 0) {
       this.startIndex--;
     }
-this.ns.getdata('123')
-.subscribe({
-  next:(res)=>{
-    console.log(res,'98')
-  },
-  error:(err)=>{
-    console.log(err,'err')
   }
-})  }
+  viewAllResources() {
+    this.ns.getdata('123')
+      .subscribe({
+        next: (res) => {
+          console.log(res, '98')
+        },
+        error: (err) => {
+          console.log(err, 'err')
+        }
+      })
+  }
 
   // toggleReadMore(index: number) {
   //   this.visibleCards[index].expanded =
