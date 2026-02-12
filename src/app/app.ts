@@ -4,10 +4,11 @@ import { Webpage } from './webpage/webpage';
 import { Network } from './network';
 import { HttpClientModule } from '@angular/common/http';
 import { Login } from './login/login';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [Login, CommonModule, HttpClientModule],
+  imports: [ CommonModule, HttpClientModule, RouterModule],
   providers: [Network],
   templateUrl: './app.html',
   styleUrl: './app.scss'

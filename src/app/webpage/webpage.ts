@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Network } from '../network';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-webpage',
@@ -9,7 +10,7 @@ import { Network } from '../network';
   styleUrl: './webpage.scss',
 })
 export class Webpage {
-  constructor(private ns: Network) { }
+  constructor(private ns: Network,private route:Router) { }
   features = [
     {
       icon: '📊',
@@ -94,6 +95,7 @@ export class Webpage {
     }
   }
   viewAllResources() {
+    this.route.navigate(['/login']);
     this.ns.getdata('123')
       .subscribe({
         next: (res) => {
