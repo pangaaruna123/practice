@@ -1,13 +1,13 @@
-import { HttpClientModule } from '@angular/common/http';
 import { Component, signal } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet,HttpClientModule],
+  imports: [RouterOutlet],
   providers: [],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
+  standalone: true,
 })
 
 export class App {

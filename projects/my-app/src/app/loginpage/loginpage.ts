@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Store } from '../store';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-loginpage',
@@ -9,11 +10,15 @@ import { Store } from '../store';
   styleUrl: './loginpage.scss',
 })
 export class Loginpage {
-constructor(private store: Store) {}
-
+constructor(private store: Store,private http: HttpClient) {}
+apiUrl = 'http://localhost:3000/api';
 ngOnInit() {
-  this.store.getUsers().subscribe(users => {
+  // this.store.getUsers().subscribe(users => {
+  //   console.log(users,'21232');
+  // });
+  this.http.get(this.apiUrl).subscribe(users => {
     console.log(users,'21232');
   });
 }
+
 }
