@@ -1,0 +1,25 @@
+.login-page {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    .login-card {
+        padding: 20px;
+
+        mat-card-header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+        }
+    }
+
+    .content {
+        .login-form {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

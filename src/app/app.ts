@@ -7,7 +7,7 @@ import { Login } from './login/login';
 
 @Component({
   selector: 'app-root',
-  imports: [Login, CommonModule, HttpClientModule],
+  imports: [Login, CommonModule],
   providers: [Network],
   templateUrl: './app.html',
   styleUrl: './app.scss'
