@@ -1,4 +1,11 @@
 .signup-card{
     margin: 0 auto;
     margin-top: 50px;
+    .signup-content{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        // grid-row: inherit;
+        // flex-direction: column;
+        gap: 20px;
+    }
 }
