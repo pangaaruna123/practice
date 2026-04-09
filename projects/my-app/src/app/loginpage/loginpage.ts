@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
   providers: [Store],
   templateUrl: './loginpage.html',
   styleUrl: './loginpage.scss',
+  standalone: true,
 })
 export class Loginpage {
 constructor(private store: Store,private http: HttpClient) {}
