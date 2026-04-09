@@ -1,2 +1,8 @@
 <p>loginpage works!</p>
 <h1>hello</h1>
+{{ users | json }}
+<ul>
+    <li *ngFor="let user of users">
+        {{ user.name }}
+    </li>
+</ul>

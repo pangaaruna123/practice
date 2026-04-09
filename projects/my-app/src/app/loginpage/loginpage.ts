@@ -1,25 +1,27 @@
 import { Component } from '@angular/core';
 import { Store } from '../store';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-loginpage',
-  imports: [],
+  imports: [HttpClientModule, CommonModule],
   providers: [Store],
   templateUrl: './loginpage.html',
   styleUrl: './loginpage.scss',
   standalone: true,
 })
 export class Loginpage {
-constructor(private store: Store,private http: HttpClient) {}
-apiUrl = 'http://localhost:3000/api';
+  users: any[] = [];
+constructor(private store: Store) {}
 ngOnInit() {
-  // this.store.getUsers().subscribe(users => {
-  //   console.log(users,'21232');
-  // });
-  this.http.get(this.apiUrl).subscribe(users => {
+  this.store.getUsers().subscribe(users => {
+    this.users = users;
     console.log(users,'21232');
   });
+  // this.http.get(this.apiUrl).subscribe(users => {
+  //   console.log(users,'21232');
+  // });
 }
 
 }

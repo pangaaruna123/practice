@@ -6,9 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class Store {
-  baseUrl = 'https://laughing-computing-machine-v6p6qq6xjqg93p4qw-4200.app.github.dev/';
-constructor(private http:HttpClient) {}  
-  getUsers():Observable<any> {
+  baseUrl = 'http://localhost:3000';
+
+  constructor(private http: HttpClient) {}
+
+  getUsers(): Observable<any> {
     console.log('Fetching users from API...');
     return this.http.get(`${this.baseUrl}/items`);
   }
