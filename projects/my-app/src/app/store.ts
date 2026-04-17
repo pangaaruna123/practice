@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +13,33 @@ export class Store {
 
   getUsers(): Observable<any> {
     console.log('Fetching users from API...');
-    return this.http.get(`${this.baseUrl}/items`);
+    return this.http.get(`${this.baseUrl}/items`).pipe(
+      map(response => {
+        console.log('Response received:', response);
+        return response; 
+      }),
+      catchError(error => {
+        console.error('Error fetching users:', error);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  senduserDetails(userData: any): Observable<any> {
+    console.log('Sending user details to API...', userData);
+    return this.http.post(`${this.baseUrl}/login`, userData).pipe(
+      map(response => {
+        console.log('User login successful:', response);
+        return response;
+      }),
+      catchError(error => {
+        console.error('Error sending user details:', error);
+        return throwError(() => ({
+          message: error.error?.message || 'Login failed. Please try again.',
+          status: error.status,
+          error: error.error
+        }));
+      })
+    );
   }
 }
