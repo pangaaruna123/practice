@@ -11,7 +11,7 @@ body{
 
 /* HERO SECTION */
 
-.hero-section{
+.hero-section{ 
   min-height:100vh;
   background:
   linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
@@ -60,6 +60,7 @@ body{
   grid-template-columns:1fr 1fr;
   align-items:center;
   gap:60px;
+  line-height: 70px;
 }
 
 .hero-left h1{

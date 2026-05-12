@@ -6,21 +6,50 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
-  imports: [CommonModule, ReactiveFormsModule,FormsModule,MaterialModule],
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, MaterialModule],
   templateUrl: './login.html',
   styleUrl: './login.scss',
 })
 export class Login {
-loginPage!: FormGroup;
-constructor(private fb:FormBuilder,private rt:Router){}
-ngOnInit(): void {
-  this.loginPage =  this.fb.group({
-    username:['',Validators.required],
-    password:['',Validators.required]
-  });
-}
-onSubmit(){
-  // this.rt.navigate(['/signup']);
-  console.log(this.loginPage.value);  
-}
+  /* loginPage!: FormGroup;
+  constructor(private fb:FormBuilder,private rt:Router){}
+  ngOnInit(): void {
+    this.loginPage =  this.fb.group({
+      username:['',Validators.required],
+      password:['',Validators.required]
+    });
+  }
+  onSubmit(){
+    console.log(this.loginPage.value);  
+  } */
+  loginForm!: FormGroup;
+
+  constructor(private fb: FormBuilder,private rt:Router) {
+
+    this.loginForm = this.fb.group({
+
+      username: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(3)
+        ]
+      ],
+      password: [
+        '',
+        [
+          Validators.required,
+          Validators.minLength(6)
+        ]
+      ]
+
+    });
+  }
+  login() {
+    if (this.loginForm.valid) {
+      console.log(this.loginForm.value);
+    }
+this.rt.navigate(['/home']);
+
+  }
 }

@@ -98,7 +98,7 @@ export class Homepage {
     this.filteredCities = this.cities.filter((item: any) =>
       item.city.toLowerCase().includes(this.searchText.toLowerCase())
     );
-
+console.log(this.filteredCities,'101');
     this.showResults = true;
 
   }

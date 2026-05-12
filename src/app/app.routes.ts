@@ -6,7 +6,7 @@ import { Homepage } from './homepage/homepage';
 import { SignUp } from './signup/signup';
 
 export const routes: Routes = [
-    { path: 'login', component: Login },
+    { path: '88', component: Login },
     { path: 'signup', component: SignUp },
     { path: 'web', component: Webpage },
     { path: 'error', component: Errorpage },
