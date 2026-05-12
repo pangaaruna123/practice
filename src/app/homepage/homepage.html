@@ -1,39 +1,252 @@
-<div class="container">
-    <!-- <mat-card></mat-card> -->
-    <!-- <div class="nav-bar">
-        <div>
-            <h3>Assets</h3>
+<header class="hero-section">
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            Travel India
         </div>
-        <div class="nav-icons">
-            <mat-icon fontIcon="filter_list"></mat-icon>
-            <mat-icon fontIcon="device_hub"></mat-icon>
-            <mat-icon fontIcon="notifications"></mat-icon>
-            <mat-icon fontIcon="person"></mat-icon>
+
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Places</a>
+            <a href="#">Hotels</a>
+            <a href="#">Culture</a>
+            <a href="#">Contact</a>
         </div>
-    </div> -->
-    <div class="asset-button">
-        <button matButton="elevated"><mat-icon fontIcon="add"></mat-icon>
-            Assign Asset</button>
+
+    </nav>
+
+    <!-- HERO CONTENT -->
+
+    <div class="hero-content">
+
+        <div class="hero-left">
+
+            <h1>
+                Explore Beautiful India
+            </h1>
+
+            <p>
+                Search your favorite city and discover tourist places,
+                luxury hotels, famous food, and cultural beauty.
+            </p>
+
+            <!-- SEARCH BAR -->
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    placeholder="Search City In India..."
+                    [(ngModel)]="searchText"
+                />
+
+                <button (click)="getDetails()">
+                    Search
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-right">
+
+            <img
+                src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1200&auto=format&fit=crop"
+                alt="India Travel"
+            />
+
+        </div>
 
     </div>
-    
-    <div class="content">
-        <div *ngFor="let asset of assetsData">
-            <mat-card appearance="outlined" class="content-card">
-                <mat-card-content>
-                    <p>AssetID: {{asset.assetId}} <span> <mat-icon fontIcon="star_outline"></mat-icon>
-                        </span></p>
-                    <p> <span class="title">{{asset.title}}</span> <button class="online-btn">online</button></p>
-                    <p>{{asset.assetImei}} <span>
-                            <p>{{asset.discId}}</p>
-                        </span></p>
-                    <p>Last Ping <span>{{asset.lastPing}}</span></p>
-                </mat-card-content>
 
-            </mat-card>
+</header>
+
+<!-- SEARCH RESULTS -->
+
+<div class="results-section" *ngIf="showResults">
+
+    <div *ngFor="let cityData of filteredCities">
+
+        <!-- CITY TITLE -->
+
+        <div class="city-title">
+            {{ cityData.city }}
         </div>
+
+        <!-- PLACES -->
+
+        <div class="section-heading">
+            Famous Places
+        </div>
+
+        <div class="card-grid">
+
+            <div
+                class="travel-card"
+                *ngFor="let place of cityData.places"
+            >
+
+                <img [src]="place.image" alt="" />
+
+                <div class="card-content">
+                    <h3>{{ place.name }}</h3>
+                    <p>{{ place.description }}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- HOTELS -->
+
+        <div class="section-heading">
+            Hotels
+        </div>
+
+        <div class="card-grid">
+
+            <div
+                class="travel-card"
+                *ngFor="let hotel of cityData.hotels"
+            >
+
+                <img [src]="hotel.image" alt="" />
+
+                <div class="card-content">
+                    <h3>{{ hotel.name }}</h3>
+                    <p>{{ hotel.description }}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- CULTURE -->
+
+        <div class="section-heading">
+            Culture
+        </div>
+
+        <div class="card-grid">
+
+            <div
+                class="travel-card"
+                *ngFor="let culture of cityData.culture"
+            >
+
+                <img [src]="culture.image" alt="" />
+
+                <div class="card-content">
+                    <h3>{{ culture.name }}</h3>
+                    <p>{{ culture.description }}</p>
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-<div class="footer">
-    <p>copy right@2025 dashboard ..</p>
+
+    <!-- NO DATA -->
+
+    <div
+        class="no-data"
+        *ngIf="filteredCities.length === 0"
+    >
+        No City Found
+    </div>
+
 </div>
-</div>
+
+<!-- DEFAULT HOME PAGE -->
+
+<ng-container *ngIf="!showResults">
+
+    <!-- PLACES SECTION -->
+
+    <section class="section-container">
+
+        <div class="section-title">
+            <h2>Top Places</h2>
+            <p>Best tourist attractions in India</p>
+        </div>
+
+        <div class="card-grid">
+
+            <div class="travel-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1200&auto=format&fit=crop"
+                    alt=""
+                />
+
+                <div class="card-content">
+                    <h3>Taj Mahal</h3>
+                    <p>
+                        One of the seven wonders of the world.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="travel-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1200&auto=format&fit=crop"
+                    alt=""
+                />
+
+                <div class="card-content">
+                    <h3>Jaipur Palace</h3>
+                    <p>
+                        Beautiful royal palace and heritage place.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="travel-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?q=80&w=1200&auto=format&fit=crop"
+                    alt=""
+                />
+
+                <div class="card-content">
+                    <h3>Kerala Backwaters</h3>
+                    <p>
+                        Peaceful nature and boating destination.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</ng-container>
+
+<!-- FOOTER -->
+
+<footer>
+
+    <h2>Travel India</h2>
+
+    <p>
+        Discover India's best tourist places and hotels.
+    </p>
+
+    <div class="footer-links">
+
+        <a href="#">Home</a>
+        <a href="#">Places</a>
+        <a href="#">Hotels</a>
+        <a href="#">Contact</a>
+
+    </div>
+
+</footer>

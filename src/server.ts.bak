@@ -1,5 +1,6 @@
 import {
   AngularNodeAppEngine,
+  createNodeRequestHandler,
   isMainModule,
   writeResponseToNodeResponse,
 } from '@angular/ssr/node';
@@ -10,23 +11,45 @@ const browserDistFolder = join(import.meta.dirname, '../browser');
 
 const app = express();
 
-// Singleton for the Angular app engine
-let angularAppEngine: AngularNodeAppEngine | null | undefined;
+// Silence manifest warnings during development
+const isDev = !process.env['NODE_ENV'] || process.env['NODE_ENV'] === 'development';
 
-async function getAngularEngine(): Promise<AngularNodeAppEngine | null> {
-  // Return cached instance
-  if (angularAppEngine !== undefined) {
-    return angularAppEngine;
+let angularApp: AngularNodeAppEngine | null = null;
+
+async function initializeAngularApp() {
+  if (angularApp) return angularApp;
+  
+  let originalError: any = null;
+  if (isDev) {
+    // In development, patch console.error temporarily
+    originalError = console.error;
+    console.error = (...args: any[]) => {
+      if (args[0]?.includes?.('allowedHosts')) return;
+      originalError(...args);
+    };
   }
 
   try {
-    angularAppEngine = new AngularNodeAppEngine();
-    return angularAppEngine;
-  } catch (error) {
-    console.warn('Failed to initialize Angular SSR engine:', error);
-    angularAppEngine = null;
-    return null;
+    angularApp = new AngularNodeAppEngine();
+  } catch (error: any) {
+    // If initialization fails due to manifest, continue anyway
+    if (error?.message?.includes?.('allowedHosts')) {
+      console.warn('Continuing without full SSR initialization due to manifest issue');
+    } else {
+      throw error;
+    }
+  } finally {
+    if (isDev && originalError) {
+      console.error = originalError;
+    }
   }
+  
+  return angularApp;
+}
+
+// Pre-initialize to catch errors early
+if (!isDev) {
+  initializeAngularApp();
 }
 
 /**
@@ -57,7 +80,7 @@ app.use(
  */
 app.use(async (req, res, next) => {
   try {
-    const engine = await getAngularEngine();
+    const engine = await initializeAngularApp();
     if (!engine) {
       return next();
     }
@@ -82,8 +105,12 @@ if (isMainModule(import.meta.url) || process.env['pm_id']) {
     if (error) {
       throw error;
     }
+
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
 
-export { app };
+/**
+ * Request handler used by the Angular CLI (for dev-server and during build) or Firebase Cloud Functions.
+ */
+export const reqHandler = createNodeRequestHandler(app);
