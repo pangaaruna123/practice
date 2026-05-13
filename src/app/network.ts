@@ -20,4 +20,17 @@ export class Network {
       })
     );
   }
+  sendUserData(userData: any): Observable<any> {
+   return this.http.post('http://localhost:4200/signup', userData).pipe(
+      map((res: any) => {
+        console.log('Data received:', res);
+        return res;
+      }),
+      catchError((err) => {
+        console.error('Error fetching data:', err);
+        throw err;
+
+      })
+    ); 
+  }
 }

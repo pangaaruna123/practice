@@ -6,8 +6,8 @@ import { Homepage } from './homepage/homepage';
 import { SignUp } from './signup/signup';
 
 export const routes: Routes = [
-    { path: '', component: Login },
-    { path: 'signup', component: SignUp },
+    { path: 'jj', component: Login },
+    { path: '', component: SignUp },
     { path: 'web', component: Webpage },
     { path: 'error', component: Errorpage },
     { path: 'home', component: Homepage},
