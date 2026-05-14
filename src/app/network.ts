@@ -8,7 +8,7 @@ import { catchError, map, Observable } from 'rxjs';
 export class Network {
   constructor(private http: HttpClient) { }
   getdata(payload: any): Observable<any> {
-    return this.http.post('http://localhost:4200/api/data', payload).pipe(
+    return this.http.post('http://localhost:3000/api/data', payload).pipe(
       map((res: any) => {
         console.log('Data received:', res);
         return res;
@@ -21,7 +21,7 @@ export class Network {
     );
   }
   sendUserData(userData: any): Observable<any> {
-   return this.http.post('http://localhost:4200/signup', userData).pipe(
+   return this.http.post('http://localhost:3000/api/auth/signup', userData).pipe(
       map((res: any) => {
         console.log('Data received:', res);
         return res;

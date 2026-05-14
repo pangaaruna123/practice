@@ -3,64 +3,54 @@
     <!-- NAVBAR -->
 
     <nav class="navbar">
-
         <div class="logo">
             Travel India
         </div>
-
         <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Places</a>
-            <a href="#">Hotels</a>
-            <a href="#">Culture</a>
-            <a href="#">Contact</a>
+            <ul>
+                <li>Home</li>
+                <li>Places</li>
+                <li>Hotels</li>
+                <li>Culture</li>
+                <li>Contact</li>
+            </ul>
         </div>
 
     </nav>
 
-<!-- HERO CONTENT -->
+    <!-- HERO CONTENT -->
 
-<div class="hero-content">
+    <div class="hero-content">
+        <div class="hero-left">
+            <h1>
+                Explore Beautiful India
+            </h1>
+            <p>
+                Search your favorite city and discover tourist places,
+                luxury hotels, famous food, and cultural beauty.
+            </p>
+            <!-- SEARCH BAR -->
 
-    <div class="hero-left">
+            <div class="search-box">
 
-        <h1>
-            Explore Beautiful India
-        </h1>
+                <input type="text" placeholder="Search City In India..." [(ngModel)]="searchText" />
 
-        <p>
-            Search your favorite city and discover tourist places,
-            luxury hotels, famous food, and cultural beauty.
-        </p>
+                <button (click)="getDetails()">
+                    Search
+                </button>
 
-        <!-- SEARCH BAR -->
+            </div>
 
-        <div class="search-box">
+        </div>
 
-            <input
-                type="text"
-                placeholder="Search City In India..."
-                [(ngModel)]="searchText"
-            />
+        <div class="hero-right">
 
-            <button (click)="getDetails()">
-                Search
-            </button>
+            <img src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1200&auto=format&fit=crop"
+                alt="India Travel" />
 
         </div>
 
     </div>
-
-    <div class="hero-right">
-
-        <img
-            src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?q=80&w=1200&auto=format&fit=crop"
-            alt="India Travel"
-        />
-
-    </div>
-
-</div>
 
 </header>
 
@@ -84,10 +74,7 @@
 
         <div class="card-grid">
 
-            <div
-                class="travel-card"
-                *ngFor="let place of cityData.places"
-            >
+            <div class="travel-card" *ngFor="let place of cityData.places">
 
                 <img [src]="place.image" alt="" />
 
@@ -108,10 +95,7 @@
 
         <div class="card-grid">
 
-            <div
-                class="travel-card"
-                *ngFor="let hotel of cityData.hotels"
-            >
+            <div class="travel-card" *ngFor="let hotel of cityData.hotels">
 
                 <img [src]="hotel.image" alt="" />
 
@@ -132,10 +116,7 @@
 
         <div class="card-grid">
 
-            <div
-                class="travel-card"
-                *ngFor="let culture of cityData.culture"
-            >
+            <div class="travel-card" *ngFor="let culture of cityData.culture">
 
                 <img [src]="culture.image" alt="" />
 
@@ -152,10 +133,7 @@
 
     <!-- NO DATA -->
 
-    <div
-        class="no-data"
-        *ngIf="filteredCities.length === 0"
-    >
+    <div class="no-data" *ngIf="filteredCities.length === 0">
         No City Found
     </div>
 
@@ -178,10 +156,8 @@
 
             <div class="travel-card">
 
-                <img
-                    src="https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1200&auto=format&fit=crop"
-                    alt=""
-                />
+                <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?q=80&w=1200&auto=format&fit=crop"
+                    alt="" />
 
                 <div class="card-content">
                     <h3>Taj Mahal</h3>
@@ -194,10 +170,8 @@
 
             <div class="travel-card">
 
-                <img
-                    src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1200&auto=format&fit=crop"
-                    alt=""
-                />
+                <img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?q=80&w=1200&auto=format&fit=crop"
+                    alt="" />
 
                 <div class="card-content">
                     <h3>Jaipur Palace</h3>
@@ -210,11 +184,8 @@
 
             <div class="travel-card">
 
-                <img
-                    src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?q=80&w=1200&auto=format&fit=crop"
-                    alt=""
-                />
-
+                <img src="https://images.unsplash.com/photo-1514222134-b57cbb8ce073?q=80&w=1200&auto=format&fit=crop"
+                    alt="" />
                 <div class="card-content">
                     <h3>Kerala Backwaters</h3>
                     <p>

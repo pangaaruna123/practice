@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MaterialModule } from '../material.module';
 import { Router } from '@angular/router';
+import { Network } from '../network';
 
 @Component({
   selector: 'app-login',
@@ -11,20 +12,10 @@ import { Router } from '@angular/router';
   styleUrl: './login.scss',
 })
 export class Login {
-  /* loginPage!: FormGroup;
-  constructor(private fb:FormBuilder,private rt:Router){}
-  ngOnInit(): void {
-    this.loginPage =  this.fb.group({
-      username:['',Validators.required],
-      password:['',Validators.required]
-    });
-  }
-  onSubmit(){
-    console.log(this.loginPage.value);  
-  } */
+
   loginForm!: FormGroup;
 
-  constructor(private fb: FormBuilder,private rt:Router) {
+  constructor(private fb: FormBuilder, private rt: Router, private network: Network) {
 
     this.loginForm = this.fb.group({
 
@@ -45,11 +36,15 @@ export class Login {
 
     });
   }
+  ngOnInit() {
+    this.network.sendUserData
+  }
   login() {
     if (this.loginForm.valid) {
       console.log(this.loginForm.value);
     }
-this.rt.navigate(['/home']);
+
+    this.rt.navigate(['/home']);
 
   }
 }

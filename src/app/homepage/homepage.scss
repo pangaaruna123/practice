@@ -37,18 +37,19 @@ body{
   font-weight:700;
 }
 
-.nav-links{
+.nav-links ul{
   display:flex;
   gap:30px;
+  list-style:none;
 }
 
-.nav-links a{
+.nav-links ul li{
   color:white;
   text-decoration:none;
   transition:0.3s;
 }
 
-.nav-links a:hover{
+.nav-links ul li:hover{
   color:#ffb703;
 }
 
