@@ -15,7 +15,10 @@ connectDB().catch((err) => {
 
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+  origin: "https://miniature-space-potato-jj9w45rg7w6cpp55-4200.app.github.dev",
+  credentials: true
+}));
 
 app.use(express.json());
 
@@ -29,7 +32,7 @@ app.get("/", (req, res) => {
 });
 
 // Server
-const PORT = process.env.PORT || 3000;
+const PORT = 3000;
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -1,6 +1,14 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
+let users = [
+  { username: "john", email: "john@example.com", password: "password123" },
+  { username: "jane", email: "jane@example.com", password: "password456" }
+];
+//getData
+const getData = async (req, res) => {
+  res.json(users);
+};
 
 // SIGNUP
 const signup = async (req, res) => {
@@ -76,6 +84,7 @@ const login = async (req, res) => {
 };
 
 module.exports = {
+  getData,
   signup,
   login,
 };
