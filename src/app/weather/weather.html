@@ -1,0 +1,18 @@
+
+<div>
+    <h1>Weather</h1>
+    <div>
+         <input type="text" [(ngModel)]="city">
+         <button (click)="getWeather()">Get Weather</button>
+    </div>
+</div>
+<div class="card-data" *ngIf="weather">
+    <div *ngIf="error" class="error">{{ error }}</div>
+    <div>
+        <h2>{{ weather.name }}</h2>
+        <p>Temperature: {{ weather.temp }} °C</p>
+        <p>Condition: {{ weather.condition }}</p>
+        <p>Humidity: {{ weather.humidity }}%</p>
+        <p>Wind Speed: {{ weather.wind }} m/s</p>
+    </div>
+</div>
