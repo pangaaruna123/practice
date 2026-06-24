@@ -3,11 +3,10 @@ import { CommonModule } from '@angular/common';
 import { Network } from './network';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
-import { Weather } from './weather/weather';
 
 @Component({
   selector: 'app-root',
-  imports: [ CommonModule, HttpClientModule, RouterModule,Weather],
+  imports: [ CommonModule, HttpClientModule, RouterModule],
   providers: [Network],
   templateUrl: './app.html',
   styleUrl: './app.scss'

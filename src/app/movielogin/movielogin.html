@@ -1,0 +1,37 @@
+<div class="login-page">
+  <div class="login-card">
+    <h1> Login</h1>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
+      <!-- USERNAME -->
+      <div class="input-group">
+        <label>Username</label>
+        <input type="text" formControlName="username" placeholder="Enter username" />
+        <div class="error" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid">
+          <span *ngIf="loginForm.get('username')?.errors?.['required']">
+            Username is required
+          </span>
+          <span *ngIf="loginForm.get('username')?.errors?.['minlength']">
+            Minimum 3 characters required
+          </span>
+        </div>
+      </div>
+      <!-- PASSWORD -->
+      <div class="input-group">
+        <label>Password</label>
+        <input type="password" formControlName="password" placeholder="Enter password" />
+        <div class="error" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+          <span *ngIf="loginForm.get('password')?.errors?.['required']">
+            Password is required
+          </span>
+          <span *ngIf="loginForm.get('password')?.errors?.['minlength']">
+            Minimum 6 characters required
+          </span>
+        </div>
+      </div>
+      <!-- BUTTON -->
+      <button type="submit" [disabled]="loginForm.invalid">
+        Login
+      </button>
+    </form>
+  </div>
+</div>

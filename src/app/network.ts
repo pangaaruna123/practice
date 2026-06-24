@@ -6,6 +6,7 @@ import { catchError, map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class Network {
+  userName:string='';
       // apiurl="http://localhost:3000";
     apiurl="https://miniature-space-potato-jj9w45rg7w6cpp55-3000.app.github.dev"
   constructor(private http: HttpClient) { }
@@ -47,5 +48,11 @@ export class Network {
 
       })
     ); 
+  }
+  getUser(user:any){
+this.userName=user;
+  }
+  sendUser(){
+    return this.userName;
   }
 }
