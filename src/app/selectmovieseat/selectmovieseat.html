@@ -10,28 +10,23 @@
 		<div class="screen">SCREEN</div>
 
 		<form class="seat-grid" aria-label="Select seats">
-        <div *ngFor="let row of rows;let r = index" class="row">
-          <div *ngFor="let seat of seats;let i = index" class="seat-container">
-            <div
-              type="checkbox"
-              [id]="row + seat"
-              class="seat-checkbox"
-			  (click)="isOccupied(i,r)"
-			  [class.selected]="colidx===i && rowIdx===r"
-            >
-             {{ row + seat }}
-		  </div>
-            <!-- <span
+			<div *ngFor="let row of rows;let r = index" class="row">
+				<div *ngFor="let seat of seats;let i = index" class="seat-container">
+					<div type="button" [id]="row + seat" class="seat-checkbox" (click)="isOccupied(r,i)">
+						{{ row + seat }}
+					</div>
+					<!-- [class.selected]="isSelected(r,i)" -->
+					<!-- <span
               class="seat"
               [class.occupied]="isOccupied(row, seat)"
             >
               {{ row + seat }}
 		</span> -->
-          </div>
+				</div>
 
-        </div>
+			</div>
 
-	<!-- 	Row A 
+			<!-- 	Row A 
 			<div class="row">
 				<input type="checkbox" id="A1" class="seat-checkbox" />
 				<label for="A1" class="seat">A1</label>
@@ -174,4 +169,3 @@ Row C
 		</div>
 	</div>
 </div>
-

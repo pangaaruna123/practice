@@ -6,9 +6,9 @@ import { catchError, map, Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class Network {
-  userName:string='';
-      // apiurl="http://localhost:3000";
-    apiurl="https://miniature-space-potato-jj9w45rg7w6cpp55-3000.app.github.dev"
+  userName: string = '';
+  // apiurl="http://localhost:3000";
+  apiurl = "https://miniature-space-potato-jj9w45rg7w6cpp55-3000.app.github.dev"
   constructor(private http: HttpClient) { }
   getdata(payload: any): Observable<any> {
     return this.http.post(`${this.apiurl}/api/data`, payload).pipe(
@@ -37,7 +37,7 @@ export class Network {
     );
   }
   sendUserData(userData: any): Observable<any> {
-   return this.http.post(`${this.apiurl}/api/auth/signup`, userData).pipe(
+    return this.http.post(`${this.apiurl}/api/auth/signup`, userData).pipe(
       map((res: any) => {
         console.log('Data received:', res);
         return res;
@@ -47,12 +47,6 @@ export class Network {
         throw err;
 
       })
-    ); 
-  }
-  getUser(user:any){
-this.userName=user;
-  }
-  sendUser(){
-    return this.userName;
+    );
   }
 }

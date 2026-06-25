@@ -66,7 +66,7 @@
 	align-items: center;
 	justify-content: center;
 	font-weight: 700;
-	box-shadow: 0 6px 14px rgba(16,24,40,0.12);
+	box-shadow: 0 6px 14px rgba(16, 24, 40, 0.12);
 }
 
 
@@ -96,7 +96,7 @@
 	font-weight: 600;
 	cursor: pointer;
 	transition: transform 0.12s ease, box-shadow 0.12s ease;
-	user-select: none;
+	// user-select: none;
 }
 
 // .seat {
@@ -117,7 +117,7 @@
 
 .seat-checkbox:hover {
 	transform: translateY(-3px);
-	box-shadow: 0 8px 18px rgba(2,6,23,0.06);
+	box-shadow: 0 8px 18px rgba(2, 6, 23, 0.06);
 }
 
 // .seat-checkbox:checked + .seat-checkbox {
@@ -135,11 +135,38 @@
 // 	cursor: not-allowed;
 // 	box-shadow: none;
 // }
-.seat-checkbox.selected  {
+// .seat-checkbox.selected  {
+// 	background: linear-gradient(90deg, #60a5fa, #34d399);
+// 	color: white;
+// 	box-shadow: 0 8px 20px rgba(52,211,153,0.12);
+// 	transform: translateY(-4px);
+// }
+.occupied {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 54px;
+	height: 40px;
+	border-radius: 8px;
 	background: linear-gradient(90deg, #60a5fa, #34d399);
 	color: white;
-	box-shadow: 0 8px 20px rgba(52,211,153,0.12);
+	box-shadow: 0 8px 20px rgba(52, 211, 153, 0.12);
 	transform: translateY(-4px);
+}
+
+.disabled {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 54px;
+	height: 40px;
+	border-radius: 8px;
+	background: linear-gradient(180deg, #f8f9fb, #fff6f7);
+	border: 1px solid #fde2e7;
+	color: #9ca3af;
+	cursor: not-allowed;
+	box-shadow: none;
+	pointer-events: none;
 }
 
 .controls {
@@ -164,15 +191,24 @@
 	border-radius: 3px;
 	vertical-align: middle;
 	margin-right: 6px;
-	border: 1px solid rgba(15,23,42,0.06);
+	border: 1px solid rgba(15, 23, 42, 0.06);
 }
 
-.legend .box.available { background: linear-gradient(180deg,#f8fbff,#f3f7ff); }
-.legend .box.selected { background: linear-gradient(90deg,#60a5fa,#34d399); }
-.legend .box.occupied { background: linear-gradient(180deg,#fff6f7,#f8f9fb); border-color:#fde2e7}
+.legend .box.available {
+	background: linear-gradient(180deg, #f8fbff, #f3f7ff);
+}
+
+.legend .box.selected {
+	background: linear-gradient(90deg, #60a5fa, #34d399);
+}
+
+.legend .box.occupied {
+	background: linear-gradient(180deg, #fff6f7, #f8f9fb);
+	border-color: #fde2e7
+}
 
 .confirm {
-	background: linear-gradient(90deg,#4f46e5,#06b6d4);
+	background: linear-gradient(90deg, #4f46e5, #06b6d4);
 	color: white;
 	padding: 0.6rem 1rem;
 	border-radius: 8px;
@@ -182,8 +218,16 @@
 }
 
 @media (max-width: 640px) {
-	.row { grid-template-columns: repeat(4, 1fr); }
-	.seat { width: 44px; height: 36px; }
-	.theatre-card { padding: 1rem; }
-}
+	.row {
+		grid-template-columns: repeat(4, 1fr);
+	}
 
+	.seat {
+		width: 44px;
+		height: 36px;
+	}
+
+	.theatre-card {
+		padding: 1rem;
+	}
+}
