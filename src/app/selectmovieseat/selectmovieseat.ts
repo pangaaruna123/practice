@@ -20,6 +20,10 @@ export class Selectmovieseat {
   rowIdx: number = -1;
   seatIds: string[] = [];
   userSeatsData: Seat[] = [];
+  isSeatSelected: boolean = true;
+  seatId: string = '';
+  userData: any;
+  isconfirm: boolean = false;
 
   constructor(private nt: Network, private cdr: ChangeDetectorRef) { }
   ngOnInit() {
@@ -28,36 +32,19 @@ export class Selectmovieseat {
       this.userName = JSON.parse(user);
     }
     console.log(user, '8888')
-   
-  }
-  ngAfterViewInit() {
- let userData = localStorage.getItem('userSeatsData');
+    let userData = localStorage.getItem('userSeatsData');
 
     if (userData) {
-      const user = JSON.parse(userData);
-      console.log('User data:', user);
-      user.seats.forEach((seatId: string) => {
-        const seatElement = document.getElementById(seatId) as HTMLElement;
-        console.log('Seat element:', seatElement, seatId);
-        if (seatElement) {
-          seatElement.className = "disabled";
-        }
-        
-      });
-
+      this.userData = JSON.parse(userData);
+      console.log('User data:', this.userData, this.userData?.seats.includes('C5'));
     }
   }
 
   isOccupied(r: number, i: number) {
-    console.log(r, i, '123')
+    this.isSeatSelected = !this.isSeatSelected;
+    console.log('Seat selected:', this.isSeatSelected);
+    console.log(r, i)
     const seatId = `${this.rows[r]}${this.seats[i]}`;
-    const seatElement = document.getElementById(seatId) as HTMLElement | null;
-    console.log('Seat element:', seatElement, seatId);
-
-    if (seatElement) {
-      //  this.seatIds.push({user: this.userName, seats: [seatId]});
-      seatElement.className = "occupied";
-    }
     if (!this.seatIds.includes(seatId)) {
       this.seatIds.push(seatId);
     }
@@ -74,16 +61,15 @@ export class Selectmovieseat {
       localStorage.setItem('userSeatsData', JSON.stringify(userData));
     }
   }
-  // disabledSeats(row:string,seat:number):boolean{
-  //   const seatId = `${row}${seat}`;
-  //   let userData=localStorage.getItem('userSeatsData');
-  //   if(userData){
-  //     const user = JSON.parse(userData);
-  //     if(user.seats.includes(seatId)){
-  //       return true;
-  //     }
-  //   }
-  //   return false; 
-  // }
+  confirmSeats() {
+    this.seatIds.forEach((seatId: string) => {
+      if (seatId) {
+        this.isconfirm = true;
+      }
+    });
+    console.log(this.isconfirm)
+    localStorage.setItem('userSeatsData', JSON.stringify({ user: this.userName, seats: this.seatIds }));
+    console.log('Confirmed Seats:', this.seatIds);
+  }
 
 }
