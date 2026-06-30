@@ -34,11 +34,7 @@ export class Store {
       }),
       catchError(error => {
         console.error('Error sending user details:', error);
-        return throwError(() => ({
-          message: error.error?.message || 'Login failed. Please try again.',
-          status: error.status,
-          error: error.error
-        }));
+        return throwError(() => error);
       })
     );
   }
