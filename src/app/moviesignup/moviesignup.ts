@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Network } from '../network';
 
 @Component({
   selector: 'app-moviesignup',
@@ -12,7 +13,7 @@ import { Router } from '@angular/router';
 export class Moviesignup {
   signupForm!: FormGroup;
   users: any[]=[];
-  constructor(private fb: FormBuilder,private rt:Router) {
+  constructor(private fb: FormBuilder,private rt:Router,private ns:Network) {
     this.signupForm = this.fb.group({
       username: [
         '',
@@ -59,10 +60,23 @@ export class Moviesignup {
     return null;
   }
   signup() {
+    const payload={
+      username: this.signupForm.value.username,
+      email: this.signupForm.value.email,
+      password: this.signupForm.value.confirmPassword
+    }
+   this.ns.getMovieUsers(payload).subscribe({
+     next: (res) => {
+        console.log('users:', res);
+      },
+      error: (err) => {
+        console.error('users not found:', err);
+      }
+   })
     if (this.signupForm.valid) {
       this.users.push(this.signupForm.value);
 
-      localStorage.setItem('users', JSON.stringify(this.users));
+      // localStorage.setItem('users', JSON.stringify(this.users));
     }
     console.log(this.users)
     this.signupForm.reset();
