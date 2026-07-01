@@ -7,11 +7,12 @@ import { catchError, map, Observable } from 'rxjs';
 })
 export class Network {
   userName: string = '';
-  apiurl = 'http://localhost:3000';
-  // If you run backend on another host/port, update this value.
+  apiurl = '/api';
+
   constructor(private http: HttpClient) { }
+
   getdata(payload: any): Observable<any> {
-    return this.http.post(`${this.apiurl}/api/data`, payload).pipe(
+    return this.http.post(`${this.apiurl}/data`, payload).pipe(
       map((res: any) => {
         console.log('Data received:', res);
         return res;
@@ -24,7 +25,7 @@ export class Network {
     );
   }
   getUsers(): Observable<any> {
-    return this.http.get(`${this.apiurl}/api/users`).pipe(
+    return this.http.get(`${this.apiurl}/users`).pipe(
       map((res: any) => {
         console.log('Data received:', res);
         return res;
@@ -37,7 +38,7 @@ export class Network {
     );
   }
   sendUserData(userData: any): Observable<any> {
-    return this.http.post(`${this.apiurl}/api/signup`, userData).pipe(
+    return this.http.post(`${this.apiurl}/signup`, userData).pipe(
       map((res: any) => {
         console.log('Data received:', res);
         return res;
@@ -49,8 +50,21 @@ export class Network {
       })
     );
   }
+  login(credentials: any): Observable<any> {
+    return this.http.post(`${this.apiurl}/login`, credentials).pipe(
+      map((res: any) => {
+        console.log('Login response:', res);
+        return res;
+      }),
+      catchError((err) => {
+        console.error('Login error:', err);
+        throw err;
+      })
+    );
+  }
+
   getMovieUsers(payload: any): Observable<any> {
-    return this.http.post('/api/moviesignup', payload).pipe(
+    return this.http.post(`${this.apiurl}/moviesignup`, payload).pipe(
       map((res: any) => {
         console.log('Data received:', res);
         return res;

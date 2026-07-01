@@ -1,4 +1,4 @@
-const User = require("../models/user");
+// const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 
 let users = [
@@ -16,29 +16,27 @@ const signup = async (req, res) => {
     const { username, email, password } = req.body;
 
     // Check existing user
-    const existingUser = await User.findOne({ email });
+    // const existingUser = await User.findOne({ email });
 
-    if (existingUser) {
-      return res.status(400).json({
-        message: "User already exists",
-      });
-    }
+    // if (existingUser) {
+    //   return res.status(400).json({
+    //     message: "User already exists",
+    //   });
+    // }
 
-    // Encrypt password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     // Create user
-    const user = await User.create({
-      username,
-      email,
-      password: hashedPassword,
-    });
+    // const user = await User.create({
+    //   username,
+    //   email,
+    //   password: hashedPassword,
+    // });
 
     res.status(201).json({
       message: "Signup successful",
-      user,
+      user: null, // Replace with actual user object if needed
     });
-
   } catch (error) {
     res.status(500).json({
       message: error.message,
@@ -46,24 +44,24 @@ const signup = async (req, res) => {
   }
 };
 
-
 // LOGIN
 const login = async (req, res) => {
   try {
-
     const { email, password } = req.body;
+    const loginIdentifier = email || username;
 
-    // Check user
-    const user = await User.findOne({ email });
 
-    if (!user) {
-      return res.status(400).json({
-        message: "User not found",
-      });
-    }
+    // // Check user
+    // const user = await User.findOne({ email });
+
+    // if (!user) {
+    //   return res.status(400).json({
+    //     message: "User not found",
+    //   });
+    // }
 
     // Compare password
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isMatch = await bcrypt.compare(password, '123456'); // Replace with user.password when using actual database
 
     if (!isMatch) {
       return res.status(400).json({
@@ -73,9 +71,8 @@ const login = async (req, res) => {
 
     res.status(200).json({
       message: "Login successful",
-      user,
+      user: null, // Replace with actual user object if needed
     });
-
   } catch (error) {
     res.status(500).json({
       message: error.message,
@@ -84,39 +81,38 @@ const login = async (req, res) => {
 };
 const moviesignup= async (req,res)=>{
   console.log('Moviesignup API called');
-  res.json({ message: 'Success' });
-  //  try {
-  //   const { username, email, password } = req.body;
+   try {
+    const { username, email, password } = req.body;
+console.log('before findOne')
+    // Check existing user
+    // const existingUser = await User.findOne({ email });
+    console.log('after findOne')
 
-  //   // Check existing user
-  //   const existingUser = await User.findOne({ email });
+    // // if (existingUser) {
+    //   return res.status(400).json({
+    //     message: "User already exists",
+    //   });
+    // // }
 
-  //   if (existingUser) {
-  //     return res.status(400).json({
-  //       message: "User already exists",
-  //     });
-  //   }
+    // Encrypt password
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-  //   // Encrypt password
-  //   const hashedPassword = await bcrypt.hash(password, 10);
+    // Create user
+    // const user = await User.create({
+    //   username,
+    //   email,
+    //   password: hashedPassword,
+    // });
+    res.status(201).json({
+      message: "Signup successful",
+      user: null, // Replace with actual user object if needed
+    });
 
-  //   // Create user
-  //   const user = await User.create({
-  //     username,
-  //     email,
-  //     password: hashedPassword,
-  //   });
-
-  //   res.status(201).json({
-  //     message: "Signup successful",
-  //     user,
-  //   });
-
-  // } catch (error) {
-  //   res.status(500).json({
-  //     message: error.message,
-  //   });
-  // }
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
 }
 module.exports = {
   getData,
