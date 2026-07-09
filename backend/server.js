@@ -1,18 +1,17 @@
 const express = require("express");
 const cors = require("cors");
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-
-//  const connectDB = require("./config/db");
-
 dotenv.config();
-
 const app = express();
 
-// Connect to DB asynchronously without blocking server startup
-// connectDB().catch((err) => {
-//   console.warn("Database connection error:", err.message);
-// });
-
+mongoose.connect(process.env.MONGO_URI)
+.then(()=>{
+    console.log("MongoDB Connected");
+})
+.catch((error)=>{
+    console.log("MongoDB Error:", error);
+});
 app.use(cors());
 
 app.use(express.json());

@@ -35,7 +35,7 @@ const signup = async (req, res) => {
 
     res.status(201).json({
       message: "Signup successful",
-      user: null, // Replace with actual user object if needed
+      user:  username // Replace with actual user object if needed
     });
   } catch (error) {
     res.status(500).json({
@@ -105,7 +105,7 @@ console.log('before findOne')
     // });
     res.status(201).json({
       message: "Signup successful",
-      user: null, // Replace with actual user object if needed
+      user: username, // Replace with actual user object if needed
     });
 
   } catch (error) {
