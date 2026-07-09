@@ -14,25 +14,7 @@ const getData = async (req, res) => {
 const signup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-
-    // Check existing user
-    // const existingUser = await User.findOne({ email });
-
-    // if (existingUser) {
-    //   return res.status(400).json({
-    //     message: "User already exists",
-    //   });
-    // }
-
     const hashedPassword = await bcrypt.hash(password, 10);
-
-    // Create user
-    // const user = await User.create({
-    //   username,
-    //   email,
-    //   password: hashedPassword,
-    // });
-
     res.status(201).json({
       message: "Signup successful",
       user:  username // Replace with actual user object if needed
@@ -49,17 +31,6 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     const loginIdentifier = email || username;
-
-
-    // // Check user
-    // const user = await User.findOne({ email });
-
-    // if (!user) {
-    //   return res.status(400).json({
-    //     message: "User not found",
-    //   });
-    // }
-
     // Compare password
     const isMatch = await bcrypt.compare(password, '123456'); // Replace with user.password when using actual database
 
@@ -83,26 +54,10 @@ const moviesignup= async (req,res)=>{
   console.log('Moviesignup API called');
    try {
     const { username, email, password } = req.body;
-console.log('before findOne')
-    // Check existing user
-    // const existingUser = await User.findOne({ email });
-    console.log('after findOne')
-
-    // // if (existingUser) {
-    //   return res.status(400).json({
-    //     message: "User already exists",
-    //   });
-    // // }
-
     // Encrypt password
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Create user
-    // const user = await User.create({
-    //   username,
-    //   email,
-    //   password: hashedPassword,
-    // });
+  
     res.status(201).json({
       message: "Signup successful",
       user: username, // Replace with actual user object if needed

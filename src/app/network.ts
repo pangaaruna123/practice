@@ -8,9 +8,7 @@ import { environment } from '../environments/environment';
 })
 export class Network {
   userName: string = '';
-  // apiurl = '/api';
   apiurl=environment.apiUrl;
-  // apiurl="https://laughing-goldfish-v6p6qq6xj55xh6x6q-3000.app.github.dev/api"
 
   constructor(private http: HttpClient) { }
 

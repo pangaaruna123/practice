@@ -106,9 +106,4 @@ export class Webpage {
         }
       })
   }
-
-  // toggleReadMore(index: number) {
-  //   this.visibleCards[index].expanded =
-  //     !this.visibleCards[index].expanded;
-  // }
 }
