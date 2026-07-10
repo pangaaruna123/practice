@@ -6,9 +6,11 @@ const {
   getData,
   signup,
   login,
-  moviesignup
+  moviesignup,
+  movieusers
 } = require("../controllers/authController");
 router.get("/users", getData);
+router.get("/movieusers", movieusers);
 
 router.post("/signup", signup);
 

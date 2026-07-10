@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Network } from '../network';
@@ -10,7 +10,7 @@ import { Network } from '../network';
   templateUrl: './moviesignup.html',
   styleUrl: './moviesignup.scss',
 })
-export class Moviesignup {
+export class Moviesignup implements OnInit {
   signupForm!: FormGroup;
   users: any[]=[];
   constructor(private fb: FormBuilder,private rt:Router,private ns:Network) {
@@ -59,6 +59,17 @@ export class Moviesignup {
     }
     return null;
   }
+  ngOnInit(){
+    this.ns.getUsersData().subscribe({
+      next: (res) => {
+        console.log('users:65', res);
+        // this.users=res;
+      },
+      error: (err) => {
+        console.error('users not found:', err);
+      }
+    })
+  }
   signup() {
     const payload={
       username: this.signupForm.value.username,
@@ -84,4 +95,5 @@ export class Moviesignup {
   loginPage(){
     this.rt.navigate(['/movielogin']);
   }
+
 }
