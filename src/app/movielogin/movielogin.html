@@ -4,14 +4,14 @@
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <!-- USERNAME -->
       <div class="input-group">
-        <label>Username</label>
-        <input type="text" formControlName="username" placeholder="Enter username" />
-        <div class="error" *ngIf="loginForm.get('username')?.touched && loginForm.get('username')?.invalid">
-          <span *ngIf="loginForm.get('username')?.errors?.['required']">
-            Username is required
+        <label>Email</label>
+        <input type="email" formControlName="email" placeholder="Enter email" />
+        <div class="error" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+          <span *ngIf="loginForm.get('email')?.errors?.['required']">
+            Email is required
           </span>
-          <span *ngIf="loginForm.get('username')?.errors?.['minlength']">
-            Minimum 3 characters required
+          <span *ngIf="loginForm.get('email')?.errors?.['email']">
+            Please enter a valid email
           </span>
         </div>
       </div>

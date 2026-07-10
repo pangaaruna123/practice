@@ -12,8 +12,8 @@ import { Network } from '../network';
 })
 export class Moviesignup implements OnInit {
   signupForm!: FormGroup;
-  users: any[]=[];
-  constructor(private fb: FormBuilder,private rt:Router,private ns:Network) {
+  users: any[] = [];
+  constructor(private fb: FormBuilder, private rt: Router, private ns: Network) {
     this.signupForm = this.fb.group({
       username: [
         '',
@@ -45,6 +45,7 @@ export class Moviesignup implements OnInit {
         validators: this.passwordMatchValidator
       });
   }
+  
   passwordMatchValidator(
     control: AbstractControl
   ): ValidationErrors | null {
@@ -59,41 +60,50 @@ export class Moviesignup implements OnInit {
     }
     return null;
   }
-  ngOnInit(){
+
+  ngOnInit() {
     this.ns.getUsersData().subscribe({
       next: (res) => {
-        console.log('users:65', res);
-        // this.users=res;
+        this.users = res;
       },
       error: (err) => {
         console.error('users not found:', err);
       }
     })
   }
-  signup() {
-    const payload={
-      username: this.signupForm.value.username,
-      email: this.signupForm.value.email,
-      password: this.signupForm.value.confirmPassword
-    }
-   this.ns.getMovieUsers(payload).subscribe({
-     next: (res) => {
-        console.log('users:', res);
-      },
-      error: (err) => {
-        console.error('users not found:', err);
-      }
-   })
-    if (this.signupForm.valid) {
-      this.users.push(this.signupForm.value);
 
-      // localStorage.setItem('users', JSON.stringify(this.users));
+  signup() {
+    const idx = this.users.findIndex((user) => user.email === this.signupForm.value.email);
+    if (idx !== -1) {
+      alert('User already exists');
+      return;
     }
-    console.log(this.users)
+    else {
+      console.log('signupForm: else check', this.signupForm.value);
+      const payload = {
+        username: this.signupForm.value.username,
+        email: this.signupForm.value.email,
+        password: this.signupForm.value.confirmPassword
+      }
+      this.ns.getMovieUsers(payload).subscribe({
+        next: (res) => {
+          console.log('users:', res);
+        },
+        error: (err) => {
+          console.error('users not found:', err);
+        }
+      })
+    }
+    // if (this.signupForm.valid) {
+    //   this.users.push(this.signupForm.value);
+
+    //   // localStorage.setItem('users', JSON.stringify(this.users));
+    // }
+    // console.log(this.users)
     this.signupForm.reset();
   }
-  loginPage(){
+
+  loginPage() {
     this.rt.navigate(['/movielogin']);
   }
-
 }

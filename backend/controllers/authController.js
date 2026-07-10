@@ -17,7 +17,7 @@ const signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, 10);
     res.status(201).json({
       message: "Signup successful",
-      user:  username // Replace with actual user object if needed
+      user: username // Replace with actual user object if needed
     });
   } catch (error) {
     res.status(500).json({
@@ -33,13 +33,11 @@ const login = async (req, res) => {
     const loginIdentifier = email || username;
     // Compare password
     const isMatch = await bcrypt.compare(password, '123456'); // Replace with user.password when using actual database
-
     if (!isMatch) {
       return res.status(400).json({
         message: "Invalid password",
       });
     }
-
     res.status(200).json({
       message: "Login successful",
       user: null, // Replace with actual user object if needed
@@ -50,49 +48,39 @@ const login = async (req, res) => {
     });
   }
 };
+// MOVIE SIGNUP
 const moviesignup = async (req, res) => {
-  console.log('Moviesignup API called', req.body);
-     try{
-         const { username, email, password } = req.body;
-          const user = new User({
-
-              username:username,
-              email:email,
-              password:password
-
-          });
-
-  console.log(user,'jjj')
-          const savedUser = await user.save();
-
-
-          res.status(201).json({
-              message:"User saved successfully",
-              user:savedUser
-          });
-
-
-      }
-      catch(error){
-          res.status(500).json({
-              error:error.message
-          });
-
-      }
+  try {
+    const { username, email, password } = req.body;
+    const user = new User({
+      username: username,
+      email: email,
+      password: password
+    });
+    
+    const savedUser = await user.save();
+    res.status(201).json({
+      message: "User saved successfully",
+      user: savedUser
+    });
+  }
+  catch (error) {
+    res.status(500).json({
+      error: error.message
+    });
+  }
 }
-const movieusers= async(req,res)=>{
-    try{
-        const users = await User.find();
-        console.log(users,'users111')
-        res.json(users);
-    }
-    catch(error){
-        res.status(500).json({
-            error:error.message
-        });
-
-    }
-
+// MOVIE USERS
+const movieusers = async (req, res) => {
+  try {
+    const users = await User.find();
+    res.json(users);
+  }
+  catch (error) {
+    res.status(500).json({
+      error: error.message
+    });
+  }
 };
 
 module.exports = {

@@ -18,32 +18,41 @@ export class Movielogin {
   constructor(
     private fb: FormBuilder,
     private rt: Router,
-    private nt:Network
+    private ns:Network
   ) {
 
     this.loginForm = this.fb.group({
-      username: ['',[Validators.required,Validators.minLength(3)]],
+      email: ['',[Validators.required,Validators.email]],
       password: ['',[Validators.required,Validators.minLength(6)]]
     });
   }
   ngOnInit() {
-    let userData=localStorage.getItem('users');
+    // let userData=localStorage.getItem('users');
 
-if(userData){
-  const user = JSON.parse(userData);
-  this.users=user;
-  console.log('User data:', user);
-}
+// if(userData){
+//   const user = JSON.parse(userData);
+//   this.users=user;
+//   console.log('User data:', user);
+// }
+  this.ns.getUsersData().subscribe({
+      next: (res) => {
+        console.log('users:65', res);
+         this.users=res;
+      },
+      error: (err) => {
+        console.error('users not found:', err);
+      }
+    })
   }
   login() {
     if(this.loginForm.valid){
-      const user= this.users.find((u:any)=>u.username===this.loginForm.get('username')?.value && u.password===this.loginForm.get('password')?.value);
+      const user= this.users.find((u:any)=>u.email===this.loginForm.get('email')?.value && u.password===this.loginForm.get('password')?.value);
       if(user){
-        localStorage.setItem('currentUser', JSON.stringify(this.loginForm.get('username')?.value));
+        localStorage.setItem('currentUser', JSON.stringify(user.username));
         this.rt.navigate(['/selectmovieseat']);
       }
       else{
-        window.alert('Invalid username or password');
+        window.alert('Invalid user Details');
       }
     }
   

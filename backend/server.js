@@ -17,7 +17,6 @@ app.use(cors());
 app.use(express.json());
 app.use("/api", require("./routes/authRoutes"));
 
-// Health check endpoint
 app.get("/", (req, res) => {
   res.json({ message: "Backend server is running" });
 });
