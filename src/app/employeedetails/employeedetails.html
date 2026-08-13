@@ -1,6 +1,4 @@
-
 <div class="employee-page">
-
 	<mat-card class="employee-card">
 		<mat-card-title>Employee Details</mat-card-title>
 		<mat-card-content>
@@ -9,31 +7,39 @@
 					<mat-form-field appearance="fill">
 						<mat-label>Name</mat-label>
 						<input matInput placeholder="Full name" formControlName="name" />
-                        <mat-error *ngIf="employeeForm.get('name')?.hasError('required')">name is required</mat-error>
+						<mat-error *ngIf="employeeForm.get('name')?.hasError('required')">name is required</mat-error>
 					</mat-form-field>
 
 					<mat-form-field appearance="fill">
 						<mat-label>Email</mat-label>
 						<input matInput type="email" placeholder="name@example.com" formControlName="email" />
-					    <mat-error *ngIf="employeeForm.get('email')?.hasError('required')">email is required</mat-error>
-                    </mat-form-field>
+						<mat-error *ngIf="employeeForm.get('email')?.hasError('required')">
+							email is required</mat-error>
+						<mat-error *ngIf="employeeForm.get('email')?.hasError('pattern')">
+							Please enter a valid email address</mat-error>
+					</mat-form-field>
 				</div>
 
 				<div class="row">
 					<mat-form-field appearance="fill">
 						<mat-label>Phone Number</mat-label>
 						<input matInput type="tel" placeholder="999999999" formControlName="phone" />
-                        <mat-error *ngIf="employeeForm.get('phone')?.hasError('required')">phone is required</mat-error>
+						<mat-error *ngIf="employeeForm.get('phone')?.hasError('required')">
+							phone is required</mat-error>
 
 					</mat-form-field>
 
 					<mat-form-field appearance="fill">
-						<mat-label>Birthdate</mat-label>
-						<input matInput [matDatepicker]="birthpicker" placeholder="MM/DD/YYYY" formControlName="birthdate" (dateChange)="validateBirthdate($event)"/>
+						<mat-label>birthDate</mat-label>
+						<input matInput [matDatepicker]="birthpicker" placeholder="MM/DD/YYYY"
+							formControlName="birthDate" (dateChange)="validatedate($event, 'birthDate');checkbod()" />
 						<mat-datepicker-toggle matSuffix [for]="birthpicker"></mat-datepicker-toggle>
 						<mat-datepicker #birthpicker></mat-datepicker>
-                        <mat-error *ngIf="getErrorMessage('birthdate') && !employeeForm.get('birthdate')?.hasError('matDatepickerParse')">{{getErrorMessage('birthdate')}}</mat-error>
-                        <mat-error *ngIf="employeeForm.get('birthdate')?.hasError('matDatepickerParse')">birthdate should be MM/DD/YYYY</mat-error>
+						<mat-error
+							*ngIf="getErrorMessage('birthDate') && !employeeForm.get('birthDate')?.hasError('matDatepickerParse')">
+							{{getErrorMessage('birthDate')}}</mat-error>
+						<mat-error *ngIf="employeeForm.get('birthDate')?.hasError('matDatepickerParse')">
+							birthDate should be MM/DD/YYYY</mat-error>
 
 
 					</mat-form-field>
@@ -42,58 +48,72 @@
 				<div class="row">
 					<mat-form-field appearance="fill">
 						<mat-label>College Start Date</mat-label>
-						<input matInput [matDatepicker]="collegeStart" placeholder="MM/DD/YYYY" formControlName="collegeStartDate"/>
+						<input matInput [matDatepicker]="collegeStart" placeholder="MM/DD/YYYY"
+							formControlName="collegeStartDate" (dateChange)="validatedate($event,'collegeStartDate');validateclgdates()" />
 						<mat-datepicker-toggle matSuffix [for]="collegeStart"></mat-datepicker-toggle>
 						<mat-datepicker #collegeStart></mat-datepicker>
-                        <mat-error
-						*ngIf="getErrorMessage('collegeStartDate') && !employeeForm.get('collegeStartDate')?.hasError('matDatepickerParse')">
-						{{getErrorMessage('collegeStartDate')}}</mat-error>
-                        <mat-error *ngIf="employeeForm.get('collegeStartDate')?.hasError('matDatepickerParse')">collegeStart date should be MM/DD/YYYY</mat-error>
-
+						<mat-error
+							*ngIf="getErrorMessage('collegeStartDate') && !employeeForm.get('collegeStartDate')?.hasError('matDatepickerParse')">
+							{{getErrorMessage('collegeStartDate')}}</mat-error>
+						<mat-error *ngIf="employeeForm.get('collegeStartDate')?.hasError('matDatepickerParse')">
+							collegeStart date should be MM/DD/YYYY</mat-error>
 					</mat-form-field>
 
 					<mat-form-field appearance="fill">
 						<mat-label>College End Date</mat-label>
-						<input matInput [matDatepicker]="collegeEnd" placeholder="MM/DD/YYYY" formControlName="collegeEndDate" />
+						<input matInput [matDatepicker]="collegeEnd" placeholder="MM/DD/YYYY"
+							formControlName="collegeEndDate" (dateChange)="validatedate($event, 'collegeEndDate');validateclgdates()" />
 						<mat-datepicker-toggle matSuffix [for]="collegeEnd"></mat-datepicker-toggle>
 						<mat-datepicker #collegeEnd></mat-datepicker>
-                        <mat-error *ngIf="employeeForm.get('collegeEndDate')?.hasError('required')&& !employeeForm.get('collegeEndDate')?.hasError('matDatepickerParse')">college EndDate is required</mat-error>
-					    <mat-error *ngIf="employeeForm.get('collegeEndDate')?.hasError('matDatepickerParse')">collegeEnd date should be MM/DD/YYYY</mat-error>
-
+						<mat-error
+							*ngIf="getErrorMessage('collegeEndDate') && !employeeForm.get('collegeEndDate')?.hasError('matDatepickerParse')">
+							{{getErrorMessage('collegeEndDate')}}</mat-error>
+						<mat-error *ngIf="employeeForm.get('collegeEndDate')?.hasError('matDatepickerParse')">
+							collegeEnd date should be MM/DD/YYYY</mat-error>
 					</mat-form-field>
 				</div>
 
 				<div class="row">
 					<mat-form-field appearance="fill">
 						<mat-label>Employee Start Date (Office)</mat-label>
-						<input matInput [matDatepicker]="startDate" placeholder="MM/DD/YYYY" formControlName="workStartDate"/>
+						<input matInput [matDatepicker]="startDate" placeholder="MM/DD/YYYY"
+							formControlName="workStartDate" (dateChange)="validatedate($event, 'workStartDate'); validateWorkdates()" />
 						<mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
 						<mat-datepicker #startDate></mat-datepicker>
-                        <mat-error *ngIf="employeeForm.get('workStartDate')?.hasError('required') &&!employeeForm.get('workStartDate')?.hasError('matDatepickerParse') ">work StartDate is required</mat-error>
-					    <mat-error *ngIf="employeeForm.get('workStartDate')?.hasError('matDatepickerParse')">workStartDate should be MM/DD/YYYY</mat-error>
-</mat-form-field>
+						<mat-error
+							*ngIf="getErrorMessage('workStartDate') && !employeeForm.get('workStartDate')?.hasError('matDatepickerParse') ">
+							{{getErrorMessage('workStartDate')}}</mat-error>
+						<mat-error *ngIf="employeeForm.get('workStartDate')?.hasError('matDatepickerParse')">
+							workStartDate should be MM/DD/YYYY</mat-error>
+					</mat-form-field>
 
 					<mat-form-field appearance="fill">
 						<mat-label>Employee End Date (Office)</mat-label>
-						<input matInput [matDatepicker]="endDate" placeholder="MM/DD/YYYY" formControlName="workEndDate"/>
+						<input matInput [matDatepicker]="endDate" placeholder="MM/DD/YYYY" formControlName="workEndDate"
+							(dateChange)="validatedate($event, 'workEndDate');validateWorkdates()" />
 						<mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
 						<mat-datepicker #endDate></mat-datepicker>
-                        <mat-error *ngIf="employeeForm.get('workEndDate')?.hasError('required') && !employeeForm.get('workEndDate')?.hasError('matDatepickerParse')">work EndDate is required</mat-error>
-					    <mat-error *ngIf="employeeForm.get('workEndDate')?.hasError('matDatepickerParse')">workEndDate should be MM/DD/YYYY</mat-error>
-
+						<mat-error
+							*ngIf="getErrorMessage('workEndDate') && !employeeForm.get('workEndDate')?.hasError('matDatepickerParse')">
+							{{getErrorMessage('workEndDate')}}</mat-error>
+						<mat-error *ngIf="employeeForm.get('workEndDate')?.hasError('matDatepickerParse')">
+							workEndDate should be MM/DD/YYYY</mat-error>
 					</mat-form-field>
 				</div>
 
 				<div class="row full-width">
 					<mat-form-field appearance="fill" class="full-width">
 						<mat-label>Address</mat-label>
-						<textarea matInput rows="4" placeholder="Street, City, ZIP" formControlName="address"></textarea>
-					    <mat-error *ngIf="employeeForm.get('address')?.hasError('required')">address is required</mat-error>
-                    </mat-form-field>
+						<textarea matInput rows="4" placeholder="Street, City, ZIP"
+							formControlName="address"></textarea>
+						<mat-error *ngIf="employeeForm.get('address')?.hasError('required')">
+							address is required</mat-error>
+					</mat-form-field>
 				</div>
 
 				<div class="actions">
-					<button mat-raised-button color="primary" [disabled]="employeeForm.invalid" (click)="saveData()">Save</button>
+					<button mat-raised-button color="primary" [disabled]="employeeForm.invalid"
+						(click)="saveData()">Save</button>
 					<button mat-button>Cancel</button>
 				</div>
 			</form>
