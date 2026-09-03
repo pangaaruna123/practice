@@ -105,6 +105,22 @@ export class Employeedetails {
   saveData() {
     console.log(this.employeeForm)
   }
+  cancelData(){
+    this.employeeForm.reset();
+    // this.employeeForm.updateValueAndValidity();
+    //  this.employeeForm.markAsUntouched();
+//     this.employeeForm.markAsPristine();
+//     Object.keys(this.employeeForm.controls).forEach(key => {
+//   const control = this.employeeForm.get(key);
+//   // control?.markAsPristine();
+//   control?.markAsUntouched();
+//   control?.setErrors(null);
+
+// });
+
+
+
+  }
   validatedate(e: any, name: string) {
     const date = new Date(e.value)
     const futureDate = new Date();

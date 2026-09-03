@@ -26,6 +26,9 @@
 						<input matInput type="tel" placeholder="999999999" formControlName="phone" />
 						<mat-error *ngIf="employeeForm.get('phone')?.hasError('required')">
 							phone is required</mat-error>
+							<mat-error *ngIf="employeeForm.get('phone')?.hasError('pattern')">
+								Phone number should be 10 digits.
+							</mat-error>
 
 					</mat-form-field>
 
@@ -105,7 +108,7 @@
 					<mat-form-field appearance="fill" class="full-width">
 						<mat-label>Address</mat-label>
 						<textarea matInput rows="4" placeholder="Street, City, ZIP"
-							formControlName="address"></textarea>
+							formControlName="address" maxlength="250"></textarea>
 						<mat-error *ngIf="employeeForm.get('address')?.hasError('required')">
 							address is required</mat-error>
 					</mat-form-field>
@@ -114,7 +117,7 @@
 				<div class="actions">
 					<button mat-raised-button color="primary" [disabled]="employeeForm.invalid"
 						(click)="saveData()">Save</button>
-					<button mat-button>Cancel</button>
+					<button mat-button (click)="cancelData()">Cancel</button>
 				</div>
 			</form>
 		</mat-card-content>
