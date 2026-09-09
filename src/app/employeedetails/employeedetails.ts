@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { MaterialModule } from '../material/material-module';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { User } from '../user';
 
 @Component({
   selector: 'app-employeedetails',
@@ -12,8 +13,11 @@ import { CommonModule } from '@angular/common';
 })
 export class Employeedetails {
   employeeForm!: FormGroup;
+  left=false;
+  center=false;
+  right=false;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private user:User) {
     this.employeeForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/)]],
@@ -95,6 +99,9 @@ export class Employeedetails {
   //   };
   // }
   ngOnInit() {
+this.user.getUsers().subscribe(res=>{
+  console.log(res,'10333')
+})
     // this.employeeForm.valueChanges.subscribe(res => {
     //   console.log(res, '118');
     //   // this.validateWorkdates();

@@ -1,4 +1,4 @@
-<div class="employee-page">
+<div class="employee-page"> 
 	<mat-card class="employee-card">
 		<mat-card-title>Employee Details</mat-card-title>
 		<mat-card-content>
@@ -124,3 +124,28 @@
 	</mat-card>
 </div>
 
+
+<!-- different type of aligns -->
+<div class="align-type">
+	<div class="navbar">
+		<button matMiniFab (click)="left=true;center=false;right=false">
+			<mat-icon>format_align_left</mat-icon>
+		</button>
+		<button matMiniFab (click)="left=false;center=true;right=false">
+			<mat-icon>format_align_center</mat-icon>
+		</button>
+		<button matMiniFab (click)="left=false;center=false;right=true">
+			<mat-icon>format_align_right</mat-icon>
+		</button>
+	</div>
+	<div class="data">
+		<p [ngClass]="left?'left':right?'right':center?'center':''">
+			Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+			industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian
+			at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text
+			for Letraset's Body Type sheets. It has survived not only many decades, but also the leap into electronic
+			typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently
+			with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.
+		</p>
+	</div>
+</div>

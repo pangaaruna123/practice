@@ -1,6 +1,11 @@
 const http = require('http')
 const fs=require('fs');
 const path = require('path')
+const express= require('express')
+const cors=require('cors')
+const app = express();
+app.use(express.json());
+app.use(cors());
 const { add, sub } = require('./math');
 console.log('backend');
 console.log(add(2,3));
@@ -25,11 +30,31 @@ fs.readFile('test.txt','utf-8',(err,data)=>{
     }
     console.log(data,'data');
 });
+// this one is uisng with http moudles 
 const server= http.createServer((req,res)=>{
 res.writeHead(200);
 res.end('checking https');
 });
+// this one is using with exprss.js
+app.get('/', (req, res) => {
+  res.send('checking dev ');
+});
 
-server.listen(3000,()=>{
+app.get('/api/users', (req, res) => {
+  res.json([
+    {
+      id: 1,
+      name: 'Rahul',
+      age: 25
+    },
+    {
+      id: 2,
+      name: 'John',
+      age: 30
+    }
+  ]);
+});
+
+app.listen(3000,()=>{
     console.log('conntecting https://localhost:3000');
 })
