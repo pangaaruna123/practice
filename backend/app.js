@@ -3,6 +3,7 @@ const fs=require('fs');
 const path = require('path')
 const express= require('express')
 const cors=require('cors')
+const router= express.Router()
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -39,8 +40,10 @@ res.end('checking https');
 app.get('/', (req, res) => {
   res.send('checking dev ');
 });
+app.use('/api',router)
 
-app.get('/api/users', (req, res) => {
+//if we do directly 
+router.get('/users', (req, res) => {
   res.json([
     {
       id: 1,
