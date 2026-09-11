@@ -3,7 +3,7 @@ const fs=require('fs');
 const path = require('path')
 const express= require('express')
 const cors=require('cors')
-const router= express.Router()
+// const router= express.Router()
 const app = express();
 app.use(express.json());
 app.use(cors());
@@ -40,23 +40,9 @@ res.end('checking https');
 app.get('/', (req, res) => {
   res.send('checking dev ');
 });
-app.use('/api',router)
+app.use('/api',require('./routers/router'))
+// app.use("/api", require("./routes/authRoutes"));
 
-//if we do directly 
-router.get('/users', (req, res) => {
-  res.json([
-    {
-      id: 1,
-      name: 'Rahul',
-      age: 25
-    },
-    {
-      id: 2,
-      name: 'John',
-      age: 30
-    }
-  ]);
-});
 
 app.listen(3000,()=>{
     console.log('conntecting https://localhost:3000');
