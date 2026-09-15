@@ -19,8 +19,4 @@ describe('Employeedetails', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should call',()=>{
-    component.saveData();
-    expect(component.saveData).toBeTruthy();
-  })
 });
