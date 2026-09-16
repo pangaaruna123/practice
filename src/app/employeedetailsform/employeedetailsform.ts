@@ -3,6 +3,7 @@ import { MaterialModule } from '../material/material-module';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User } from '../user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employeedetailsform',
@@ -13,16 +14,16 @@ import { User } from '../user';
 })
 export class EmployeedetailsForm {
   employeeForm!: FormGroup;
-  left=false;
-  center=false;
-  right=false;
+  left = false;
+  center = false;
+  right = false;
 
-  constructor(private fb: FormBuilder,private user:User) {
+  constructor(private fb: FormBuilder, private user: User,private rt:Router) {
     this.employeeForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,3}$/)]],
-      phone: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
-      birthDate: ['', [Validators.required]],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^[0-9]{10}$/)]],
+      dateOfBirth: ['', [Validators.required]],
       collegeStartDate: ['', [Validators.required]],
       collegeEndDate: ['', [Validators.required]],
       workStartDate: ['', [Validators.required]],
@@ -30,99 +31,25 @@ export class EmployeedetailsForm {
       address: ['', [Validators.required]]
     });
   }
-  // mmddyyyyValidator(): ValidatorFn {
-  //   return (control: AbstractControl): ValidationErrors | null => {
-  //     const value = control.value;
-
-  //     console.log('Original value:', value);
-
-  //     if (!value) {
-  //       return null;
-  //     }
-
-  //     let formattedDate = '';
-
-  //     // If Angular Material gives us a Date object
-  //     if (value instanceof Date) {
-  //       if (isNaN(value.getTime())) {
-  //         return { pattern: true };
-  //       }
-
-  //       const month = String(value.getMonth() + 1).padStart(2, '0');
-  //       const day = String(value.getDate()).padStart(2, '0');
-  //       const year = value.getFullYear();
-
-  //       formattedDate = `${month}/${day}/${year}`;
-  //     }
-
-  //     // If value is a string
-  //     else if (typeof value === 'string') {
-  //       const trimmedValue = value.trim();
-
-  //       // Already in MM/DD/YYYY or M/D/YYYY format
-  //       const shortDatePattern =
-  //         /^(0?[1-9]|1[0-2])\/(0?[1-9]|[12]\d|3[01])\/\d{4}$/;
-
-  //       if (shortDatePattern.test(trimmedValue)) {
-  //         formattedDate = trimmedValue;
-  //       } else {
-  //         // Try converting a full date string to Date
-  //         const parsedDate = new Date(trimmedValue);
-
-  //         if (isNaN(parsedDate.getTime())) {
-  //           return { pattern: true };
-  //         }
-
-  //         const month = String(parsedDate.getMonth() + 1).padStart(2, '0');
-  //         const day = String(parsedDate.getDate()).padStart(2, '0');
-  //         const year = parsedDate.getFullYear();
-
-  //         formattedDate = `${month}/${day}/${year}`;
-  //       }
-  //     }
-
-  //     else {
-  //       return { pattern: true };
-  //     }
-
-  //     console.log('Formatted date:', formattedDate);
-
-  //     // Final MM/DD/YYYY validation
-  //     const pattern =
-  //       /^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$/;
-
-  //     if (!pattern.test(formattedDate)) {
-  //       return { pattern: true };
-  //     }
-
-  //     return null;
-  //   };
-  // }
-  ngOnInit() {
-    // this.employeeForm.valueChanges.subscribe(res => {
-    //   console.log(res, '118');
-    //   // this.validateWorkdates();
-    //   // this.validateclgdates();
-    //   // this.checkbod();
-    // })
-  }
+  ngOnInit() {}
   saveData() {
-    console.log(this.employeeForm.value,'110')
+    console.log(this.employeeForm.value, '110')
+    const payload = this.employeeForm.value
+    this.user.addUser(payload).subscribe({
+      next: (res) => {
+        console.log(res)
+        this.rt.navigate([''])
+
+      },
+      error: (err) => {
+        throw err
+      }
+    }
+    )
   }
-  cancelData(){
+  cancelData() {
     this.employeeForm.reset();
-    // this.employeeForm.updateValueAndValidity();
-    //  this.employeeForm.markAsUntouched();
-//     this.employeeForm.markAsPristine();
-//     Object.keys(this.employeeForm.controls).forEach(key => {
-//   const control = this.employeeForm.get(key);
-//   // control?.markAsPristine();
-//   control?.markAsUntouched();
-//   control?.setErrors(null);
-
-// });
-
-
+    this.rt.navigate([''])
 
   }
   validatedate(e: any, name: string) {
@@ -142,9 +69,9 @@ export class EmployeedetailsForm {
 
   }
   checkbod() {
-    const birthDate = new Date(this.employeeForm?.get('birthDate')?.value)
+    const dateOfBirth = new Date(this.employeeForm?.get('dateOfBirth')?.value)
     const clgstartControls = this.employeeForm.get('collegeStartDate')
-    if (birthDate >= new Date(clgstartControls?.value)) {
+    if (dateOfBirth >= new Date(clgstartControls?.value)) {
       clgstartControls?.setErrors({
         clgsdgreterthenbod: true
       })
@@ -157,37 +84,37 @@ export class EmployeedetailsForm {
     }
   }
   validateclgdates() {
-    const birthDate = new Date(this.employeeForm?.get('birthDate')?.value)
+    const dateOfBirth = new Date(this.employeeForm?.get('dateOfBirth')?.value)
     const startControls = this.employeeForm.get('collegeStartDate')
     const endControls = this.employeeForm?.get('collegeEndDate')
-    if (new Date(startControls?.value) <= birthDate) {
+    if (new Date(startControls?.value) <= dateOfBirth) {
       startControls?.setErrors({
         clgsdgreterthenbod: true
       })
     }
     else {
-      const errors ={ ...startControls?.errors };
+      const errors = { ...startControls?.errors };
       delete errors['clgsdgreterthenbod']
       startControls?.setErrors(
         Object.keys(errors).length ? errors : null
       );
     }
 
-    if(new Date(endControls?.value)<=new Date(startControls?.value)){
+    if (new Date(endControls?.value) <= new Date(startControls?.value)) {
       endControls?.setErrors({
-        clgedgreterthenclgsd:true
+        clgedgreterthenclgsd: true
       })
     }
-    else{
-       const errors = { ...endControls?.errors };
-       delete errors ['clgedgreterthenclgsd']
- endControls?.setErrors(
+    else {
+      const errors = { ...endControls?.errors };
+      delete errors['clgedgreterthenclgsd']
+      endControls?.setErrors(
         Object.keys(errors).length ? errors : null
       );
     }
   }
-validateWorkdates(){
-   const clgendDate = new Date(this.employeeForm?.get('collegeEndDate')?.value)
+  validateWorkdates() {
+    const clgendDate = new Date(this.employeeForm?.get('collegeEndDate')?.value)
     const workstartControls = this.employeeForm.get('workStartDate')
     const workendControls = this.employeeForm?.get('workEndDate')
     if (new Date(workstartControls?.value) <= clgendDate) {
@@ -197,26 +124,26 @@ validateWorkdates(){
       workstartControls?.markAsTouched()
     }
     else {
-      const errors ={ ...workstartControls?.errors };
+      const errors = { ...workstartControls?.errors };
       delete errors['wsdgreterthenbod']
       workstartControls?.setErrors(
         Object.keys(errors).length ? errors : null
       );
     }
 
-    if(new Date(workendControls?.value)<=new Date(workstartControls?.value)){
+    if (new Date(workendControls?.value) <= new Date(workstartControls?.value)) {
       workendControls?.setErrors({
-        wedgreterthenwsd:true
+        wedgreterthenwsd: true
       })
     }
-    else{
-       const errors = { ...workendControls?.errors };
-       delete errors ['wedgreterthenwsd']
- workendControls?.setErrors(
+    else {
+      const errors = { ...workendControls?.errors };
+      delete errors['wedgreterthenwsd']
+      workendControls?.setErrors(
         Object.keys(errors).length ? errors : null
       );
     }
-}
+  }
   getErrorMessage(fieldName: string): string {
     const control = this.employeeForm.get(fieldName);
     const value = new Date(control?.value)

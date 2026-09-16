@@ -1,0 +1,31 @@
+.popup {
+    display: block;
+    padding: 20px;
+    background: azure;
+    height: 100%;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p{
+            margin: 0px;
+            font-size: 20px;
+        }
+    }
+
+    .content {
+        margin-top: 20px;
+        text-align: center;
+
+        .btns {
+            display: block;
+            align-items: center;
+            padding: 10px;
+
+            button {
+                margin: 10px;
+            }
+        }
+    }
+}

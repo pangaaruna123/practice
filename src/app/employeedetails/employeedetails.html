@@ -1,12 +1,13 @@
 <mat-card class="table-data">
-    <div>
+    <div class="header">
         <h3>Employees Details</h3>
+        <button mat-raised-button (click)="addEmployee()">Add Employee</button>
     </div>
     <table mat-table [dataSource]="employeeData">
         <ng-container *ngFor="let item of columns" [matColumnDef]="item">
             <ng-container *ngIf="item !== 'actions'; else actionbtns">
                 <th mat-header-cell *matHeaderCellDef>{{item}}</th>
-                <td mat-cell *matCellDef=" let data">{{data[item]}}</td>
+                <td mat-cell *matCellDef=" let data">{{item.includes('date')?formateDate(data[item]):data[item]}}</td>
             </ng-container>
             <ng-template #actionbtns>
                 <th mat-header-cell *matHeaderCellDef>Actions</th>

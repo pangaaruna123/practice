@@ -23,26 +23,26 @@
 				<div class="row">
 					<mat-form-field appearance="fill">
 						<mat-label>Phone Number</mat-label>
-						<input matInput type="tel" placeholder="999999999" formControlName="phone" />
-						<mat-error *ngIf="employeeForm.get('phone')?.hasError('required')">
-							phone is required</mat-error>
-							<mat-error *ngIf="employeeForm.get('phone')?.hasError('pattern')">
+						<input matInput type="tel" placeholder="999999999" formControlName="phoneNumber" />
+						<mat-error *ngIf="employeeForm.get('phoneNumber')?.hasError('required')">
+							phoneNumber is required</mat-error>
+							<mat-error *ngIf="employeeForm.get('phoneNumber')?.hasError('pattern')">
 								Phone number should be 10 digits.
 							</mat-error>
 
 					</mat-form-field>
 
 					<mat-form-field appearance="fill">
-						<mat-label>birthDate</mat-label>
+						<mat-label>Date Of Birth</mat-label>
 						<input matInput [matDatepicker]="birthpicker" placeholder="MM/DD/YYYY"
-							formControlName="birthDate" (dateChange)="validatedate($event, 'birthDate');checkbod()" />
+							formControlName="dateOfBirth" (dateChange)="validatedate($event, 'dateOfBirth');checkbod()" />
 						<mat-datepicker-toggle matSuffix [for]="birthpicker"></mat-datepicker-toggle>
 						<mat-datepicker #birthpicker></mat-datepicker>
 						<mat-error
-							*ngIf="getErrorMessage('birthDate') && !employeeForm.get('birthDate')?.hasError('matDatepickerParse')">
-							{{getErrorMessage('birthDate')}}</mat-error>
-						<mat-error *ngIf="employeeForm.get('birthDate')?.hasError('matDatepickerParse')">
-							birthDate should be MM/DD/YYYY</mat-error>
+							*ngIf="getErrorMessage('dateOfBirth') && !employeeForm.get('dateOfBirth')?.hasError('matDatepickerParse')">
+							{{getErrorMessage('dateOfBirth')}}</mat-error>
+						<mat-error *ngIf="employeeForm.get('dateOfBirth')?.hasError('matDatepickerParse')">
+							dateOfBirth should be MM/DD/YYYY</mat-error>
 
 
 					</mat-form-field>

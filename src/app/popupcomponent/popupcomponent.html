@@ -1,0 +1,13 @@
+<mat-card class="popup" >
+    <div class="header">
+        <p>delete popup</p>
+        <mat-icon fontIcon="close" (click)="closepopup()"></mat-icon>
+    </div>
+    <div class="content">
+        <p> confirm delete record?</p>
+        <div class="btns">
+            <button matButton="outlined" (click)="closepopup()">cancel</button>
+            <button matButton="filled" (click)="deleterecord()">delete</button>
+        </div>
+    </div>
+</mat-card>

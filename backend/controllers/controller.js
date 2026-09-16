@@ -5,8 +5,8 @@ let users = [
         email: 'rahul@gmail.com',
         phoneNumber: '9859868532',
         dateOfBirth: '12/11/2001',
-        clgStartDate: '21/08/2019',
-        clgendDate: '24/09/2022',
+        collegeStartDate: '21/08/2019',
+        collegeEndDate: '24/09/2022',
         workStartDate: '1/05/2023',
         workEndDate: '30/07/2025',
         address: 'hyderabad,telangana,india'
@@ -17,8 +17,8 @@ let users = [
         email: 'john@gmail.com',
         phoneNumber: '9859868532',
         dateOfBirth: '21/01/1998',
-        clgStartDate: '24/07/2013',
-        clgendDate: '10/09/2016',
+        collegeStartDate: '24/07/2013',
+        collegeEndDate: '10/09/2016',
         workStartDate: '1/02/2017',
         workEndDate: '30/09/2022',
         address: 'hyderabad,telangana,india'
@@ -28,7 +28,17 @@ let users = [
 const userData = async (req, res) => {
     res.json(users);
 };
+const createUser = async(req,res)=>{
+    const user=req.body
+    users.push(user);
+    console.log(req,res,'user',users);
+    res.status(201).json({
+    message: 'User added successfully',
+    user: user
+  });
+}
 
 module.exports = {
-    userData
+    userData,
+    createUser
 }

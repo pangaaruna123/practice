@@ -22,5 +22,15 @@ export class User {
       })
     );
 }
-
+addUser(payload:any){
+return this.http.post('/api/user',payload).pipe(
+  map(res=>{
+    return res
+  }),
+  catchError(err=>{
+    throw err
+  })
+ 
+)
+}
 }
